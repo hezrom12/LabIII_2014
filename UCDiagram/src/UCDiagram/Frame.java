@@ -60,7 +60,7 @@ public class Frame extends JFrame{
         
         final JTree arvore = new JTree(nodoRaiz);
         painel1.add(arvore);
-        getContentPane().add(painel1, BorderLayout.WEST);
+        getContentPane().add(arvore, BorderLayout.WEST);
        
  
         
