@@ -6,35 +6,180 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import javax.swing.*;
+import javax.swing.tree.DefaultMutableTreeNode;
 
 
 public class Frame extends JFrame{
     
-   //TelaDesenho desenho;
-    JToggleButton botaoSelecionar, botaoCirculo, botaoQuadrado, botaoTexto;
+   //Frame
+    JToggleButton botaoSelecionar, botaoAtor, botaoUsecase, botaoAssociacao, botaoExtend, botaoInclude, botaoTexto;
     JButton botaoLimpar;
     JToolBar barraFerramentas;
-    
+    JPanel painel1, painel2;
    
     public Frame() {
         super("UCDiagram");
 
         iniciaComponentes();
         iniciaMenu();
+        iniciaFerramentas();
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocation(200,100);
-        setSize(640, 480);
+        setSize(800,600 );
         setVisible(true);
     }
     
     private void iniciaComponentes() {
-            //Menu de Ferramentas
-        ButtonGroup botaoGrupo = new ButtonGroup();
+        //Separador de Painel
+        JPanel painel1 = new JPanel();
+        JPanel painel2 = new JPanel();
+        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,painel1,painel2);
+        splitPane.setDividerLocation(200);
+        getContentPane().add(splitPane);
+        
+        //Arvore
+        DefaultMutableTreeNode nodoRaiz = new DefaultMutableTreeNode("Raiz");
+        
+        DefaultMutableTreeNode nodoGalho1 = new DefaultMutableTreeNode("Galho1");
+
+        DefaultMutableTreeNode nodoFolha1 = new DefaultMutableTreeNode("Folha1");
+        nodoGalho1.add(nodoFolha1);
+        DefaultMutableTreeNode nodoFolha2 = new DefaultMutableTreeNode("Folha2");
+        nodoGalho1.add(nodoFolha2);
+        DefaultMutableTreeNode nodoFolha3 = new DefaultMutableTreeNode("Folha3");
+        nodoGalho1.add(nodoFolha3);
+
+        nodoRaiz.add(nodoGalho1);
+        
+        DefaultMutableTreeNode nodoGalho2 = new DefaultMutableTreeNode("Galho2");
+        
+        DefaultMutableTreeNode nodoFolha4 = new DefaultMutableTreeNode("Folha4");
+        nodoGalho2.add(nodoFolha4);
+        DefaultMutableTreeNode nodoFolha5 = new DefaultMutableTreeNode("Folha5");
+        nodoGalho2.add(nodoFolha5);
+
+        nodoRaiz.add(nodoGalho2);        
+        
+        final JTree arvore = new JTree(nodoRaiz);
+        painel1.add(arvore);
+        getContentPane().add(painel1, BorderLayout.WEST);
         
     }
     
-        private void iniciaMenu(){
+        
+        
+        
+   
+    
+    private void iniciaFerramentas() {
+        //Menu de Ferramentas
+        ButtonGroup botaoGrupo = new ButtonGroup();
+
+        barraFerramentas = new JToolBar();
+        botaoSelecionar = new JToggleButton("Select", true);        
+        botaoGrupo.add(botaoSelecionar);
+        barraFerramentas.add(botaoSelecionar);
+        
+        //Botão Ator
+        botaoAtor = new JToggleButton("Ator", true);
+        botaoAtor.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                desenho.deselecionarFiguras();
+                
+            }
+        });
+        botaoGrupo.add(botaoAtor);
+        barraFerramentas.add(botaoAtor);
+
+        //Botão Usecase
+        botaoUsecase = new JToggleButton("UC");
+        botaoUsecase.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                desenho.deselecionarFiguras();
+            }
+        });
+        botaoGrupo.add(botaoUsecase);
+        barraFerramentas.add(botaoUsecase);
+        
+        //Botão Associação
+        botaoAssociacao = new JToggleButton("----");
+        botaoAssociacao.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                desenho.deselecionarFiguras();
+            }
+        });
+        botaoGrupo.add(botaoAssociacao);
+        barraFerramentas.add(botaoAssociacao);
+        
+        //Botão Extend
+        botaoExtend = new JToggleButton("E-->");
+        botaoExtend.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                desenho.deselecionarFiguras();
+            }
+        });
+        botaoGrupo.add(botaoExtend);
+        barraFerramentas.add(botaoExtend);
+        
+          //Botão Include
+        botaoInclude = new JToggleButton("I-->");
+        botaoInclude.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                desenho.deselecionarFiguras();
+            }
+        });
+        botaoGrupo.add(botaoInclude);
+        barraFerramentas.add(botaoInclude);
+        
+        
+        //Botão Texto
+        botaoTexto = new JToggleButton("Text");
+        botaoTexto.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                desenho.deselecionarFiguras();
+            }
+        });
+        botaoGrupo.add(botaoTexto);
+        barraFerramentas.add(botaoTexto);
+
+        barraFerramentas.add(Box.createHorizontalGlue());
+        
+        //Botão Limpar
+        botaoLimpar = new JButton("Limpar");
+        botaoLimpar.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                desenho.limpar();
+                desenho.repaint();
+            }
+
+        });
+        barraFerramentas.add(botaoLimpar);
+
+        getContentPane().add(barraFerramentas, BorderLayout.NORTH);
+
+        //desenho = new TelaDesenho();
+        //desenho.addMouseListener(new TrataMouse());
+        //desenho.addMouseMotionListener(new TrataMouse());
+        //getContentPane().add(desenho);
+        
+    }
+    
+    private void iniciaMenu(){
             //Menus
         JMenuBar menuBar = new JMenuBar();
         JMenu menuArquivo = new JMenu("Arquivo");
