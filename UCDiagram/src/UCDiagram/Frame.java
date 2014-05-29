@@ -29,12 +29,13 @@ public class Frame extends JFrame{
     }
     
     private void iniciaComponentes() {
-
+            //Menu de Ferramentas
         ButtonGroup botaoGrupo = new ButtonGroup();
         
     }
     
         private void iniciaMenu(){
+            //Menus
         JMenuBar menuBar = new JMenuBar();
         JMenu menuArquivo = new JMenu("Arquivo");
         menuArquivo.setMnemonic(KeyEvent.VK_A);
@@ -42,20 +43,24 @@ public class Frame extends JFrame{
         JMenu menuAjuda = new JMenu("Ajuda");
         menuAjuda.setMnemonic(KeyEvent.VK_J);
         
+            //Menus Itens
         JMenuItem menuItemNovo = new JMenuItem(TrataMenu.NOVO);
         menuItemNovo.setMnemonic(KeyEvent.VK_N);
+        menuItemNovo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N,ActionEvent.CTRL_MASK));
         menuItemNovo.setName(TrataMenu.NOVO);
         menuItemNovo.addActionListener(new TrataMenu());
         menuArquivo.add(menuItemNovo);
         
         JMenuItem menuItemAbrir = new JMenuItem(TrataMenu.ABRIR);
         menuItemAbrir.setMnemonic(KeyEvent.VK_B);
+        menuItemAbrir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O,ActionEvent.CTRL_MASK));
         menuItemAbrir.setName(TrataMenu.ABRIR);
         menuItemAbrir.addActionListener(new TrataMenu());
         menuArquivo.add(menuItemAbrir);
         
         JMenuItem menuItemSalvar = new JMenuItem(TrataMenu.SALVAR);
         menuItemSalvar.setMnemonic(KeyEvent.VK_S);
+        menuItemSalvar.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S,ActionEvent.CTRL_MASK));
         menuItemSalvar.setName(TrataMenu.SALVAR);
         menuItemSalvar.addActionListener(new TrataMenu());
         menuArquivo.add(menuItemSalvar);
@@ -70,6 +75,7 @@ public class Frame extends JFrame{
         menuItemSobre.setName(TrataMenu.SOBRE);
         menuAjuda.add(menuItemSobre);
         
+            //Adiciona os "MenusItem" ao Menu
         menuBar.add(menuArquivo);
         menuBar.add(Box.createHorizontalGlue());
         menuBar.add(menuAjuda);
