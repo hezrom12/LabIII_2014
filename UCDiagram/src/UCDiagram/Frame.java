@@ -12,6 +12,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 public class Frame extends JFrame{
     
    //Frame
+    Desenho desenho;
     JToggleButton botaoSelecionar, botaoAtor, botaoUsecase, botaoAssociacao, botaoExtend, botaoInclude, botaoTexto;
     JButton botaoLimpar;
     JToolBar barraFerramentas;
@@ -35,43 +36,32 @@ public class Frame extends JFrame{
         JPanel painel1 = new JPanel();
         JPanel painel2 = new JPanel();
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,painel1,painel2);
-        splitPane.setDividerLocation(200);
         getContentPane().add(splitPane);
         
         //Arvore
         DefaultMutableTreeNode nodoRaiz = new DefaultMutableTreeNode("Raiz");
-        
         DefaultMutableTreeNode nodoGalho1 = new DefaultMutableTreeNode("Galho1");
-
         DefaultMutableTreeNode nodoFolha1 = new DefaultMutableTreeNode("Folha1");
         nodoGalho1.add(nodoFolha1);
         DefaultMutableTreeNode nodoFolha2 = new DefaultMutableTreeNode("Folha2");
         nodoGalho1.add(nodoFolha2);
         DefaultMutableTreeNode nodoFolha3 = new DefaultMutableTreeNode("Folha3");
         nodoGalho1.add(nodoFolha3);
-
         nodoRaiz.add(nodoGalho1);
-        
         DefaultMutableTreeNode nodoGalho2 = new DefaultMutableTreeNode("Galho2");
-        
         DefaultMutableTreeNode nodoFolha4 = new DefaultMutableTreeNode("Folha4");
         nodoGalho2.add(nodoFolha4);
         DefaultMutableTreeNode nodoFolha5 = new DefaultMutableTreeNode("Folha5");
         nodoGalho2.add(nodoFolha5);
-
         nodoRaiz.add(nodoGalho2);        
         
         final JTree arvore = new JTree(nodoRaiz);
         painel1.add(arvore);
         getContentPane().add(painel1, BorderLayout.WEST);
+ 
         
     }
-    
-        
-        
-        
    
-    
     private void iniciaFerramentas() {
         //Menu de Ferramentas
         ButtonGroup botaoGrupo = new ButtonGroup();
@@ -278,6 +268,57 @@ public class Frame extends JFrame{
         
     }
 
+    private class TrataMouse extends MouseAdapter {
+
+        public final static int TAMANHO = 30;
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+            int x = e.getX();
+            int y = e.getY();
+            int tam = TAMANHO;
+            if(botaoSelecionar.isSelected()){
+                desenho.verificaSelecao(x, y);
+            }
+            else if (botaoAtor.isSelected()) {
+                Ator a = new Ator(x, y, tam);
+                desenho.addFigura(a);
+            } else if (botaoUsecase.isSelected()) {
+                UseCase u = new UseCase(x, y, tam);
+                desenho.addFigura(u);
+            } else if (botaoAssociacao.isSelected()) {
+                Associacao as = new Associacao(x, y, tam);
+                desenho.addFigura(as);
+            } else if (botaoExtend.isSelected()) {
+                Extend ex = new Extend(x, y, tam);
+                desenho.addFigura(ex);
+            } else if (botaoInclude.isSelected()) {
+                Include i = new Include(x, y, tam);
+                desenho.addFigura(i);
+            } else if (botaoTexto.isSelected()) {
+                String texto = JOptionPane.showInputDialog("Texto:");
+                Texto t = new Texto(x, y, texto);
+                desenho.addFigura(t);
+
+            }
+
+            desenho.repaint();
+
+        }
+
+        @Override
+        public void mouseDragged(MouseEvent e) {
+            int x = e.getX();
+            int y = e.getY();
+            if(botaoSelecionar.isSelected()){
+                
+                Figura figura = desenho.getSelecionado();
+                if(figura!=null)
+                    figura.moveTo(x, y);
+            }            
+            desenho.repaint();
+        }
+    }
     
     
     
