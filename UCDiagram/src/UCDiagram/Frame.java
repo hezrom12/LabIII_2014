@@ -29,6 +29,8 @@ public class Frame extends JFrame{
         setLocation(200,100);
         setSize(800,600 );
         setVisible(true);
+        
+        
     }
     
     private void iniciaComponentes() {
@@ -37,6 +39,7 @@ public class Frame extends JFrame{
         JPanel painel2 = new JPanel();
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,painel1,painel2);
         getContentPane().add(splitPane);
+        
         
         //Arvore
         DefaultMutableTreeNode nodoRaiz = new DefaultMutableTreeNode("Raiz");
@@ -58,6 +61,7 @@ public class Frame extends JFrame{
         final JTree arvore = new JTree(nodoRaiz);
         painel1.add(arvore);
         getContentPane().add(painel1, BorderLayout.WEST);
+       
  
         
     }
@@ -67,7 +71,7 @@ public class Frame extends JFrame{
         ButtonGroup botaoGrupo = new ButtonGroup();
 
         barraFerramentas = new JToolBar();
-        botaoSelecionar = new JToggleButton("Select", true);        
+        botaoSelecionar = new JToggleButton("Select", false);        
         botaoGrupo.add(botaoSelecionar);
         barraFerramentas.add(botaoSelecionar);
         
@@ -162,10 +166,11 @@ public class Frame extends JFrame{
 
         getContentPane().add(barraFerramentas, BorderLayout.NORTH);
 
-        //desenho = new TelaDesenho();
-        //desenho.addMouseListener(new TrataMouse());
-        //desenho.addMouseMotionListener(new TrataMouse());
-        //getContentPane().add(desenho);
+        desenho = new Desenho();
+        desenho.addMouseListener(new TrataMouse());
+        desenho.addMouseMotionListener(new TrataMouse());
+        getContentPane().add(desenho);
+       
         
     }
     
@@ -217,7 +222,7 @@ public class Frame extends JFrame{
         setJMenuBar(menuBar);
         
     }
-        
+
     private class TrataMenu implements ActionListener{
     public static final String NOVO="Novo";
     public static final String ABRIR="Abrir";
@@ -319,7 +324,5 @@ public class Frame extends JFrame{
             desenho.repaint();
         }
     }
-    
-    
-    
+        
 }

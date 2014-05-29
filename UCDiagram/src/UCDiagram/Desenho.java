@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 public class Desenho extends JPanel{
     List<Figura> figuras;
     public Desenho(){
-        figuras = new ArrayList<Figura>();
+        figuras = new ArrayList<>();
     }
     
     public void addFigura(Figura f)
