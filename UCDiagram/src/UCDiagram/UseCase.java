@@ -8,6 +8,7 @@ import java.awt.Graphics;
  */
 public class UseCase extends Figura{
 private int tam;
+     public String str = "Caso de Uso";
 
     public UseCase(int x, int y, int tam) {
         super(x, y);
@@ -24,8 +25,8 @@ private int tam;
     }
 
     public void desenha(Graphics g) {
-      
         g.drawOval(posX, posY, 150, 50);
+        g.drawString(str, posX+30, posY+30);
         if (this.estaSelecionado()) {
             g.drawOval(posX-2,posY-2,4,4);
             g.drawOval(posX-2,posY+50-2,4,4);
