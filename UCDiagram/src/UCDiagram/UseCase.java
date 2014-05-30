@@ -7,8 +7,8 @@ import java.awt.Graphics;
  * @author hezrom
  */
 public class UseCase extends Figura{
-private int tam;
-     public String str = "Caso de Uso";
+    private int tam;
+    public String str = "Caso de Uso";
 
     public UseCase(int x, int y, int tam) {
         super(x, y);

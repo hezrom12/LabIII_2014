@@ -7,6 +7,7 @@ import java.awt.Graphics;
 public class Ator extends Figura{
 
   private int tam;
+  public String ator = "Ator";
 
     public Ator(int x, int y, int tam) {
         super(x, y);
@@ -23,12 +24,17 @@ public class Ator extends Figura{
     }
 
     public void desenha(Graphics g) {
-        g.drawOval(posX, posY, tam, tam);
+        g.drawOval(posX, posY, tam, tam);                   //cabeça
+        g.drawLine(posX+15, posY+30, posX+15, posY+70);     //corpo
+        g.drawLine(posX-5, posY+45, posX+35, posY+45);     //braços
+        g.drawLine(posX+0, posY+95, posX+15, posY+70);     //perna esq
+        g.drawLine(posX+15, posY+70, posX+30, posY+95);    //perna dir
+        g.drawString(ator, posX+3, posY+110);
         if (this.estaSelecionado()) {
-            g.drawOval(posX-2,posY-2,4,4);
-            g.drawOval(posX-2,posY+tam-2,4,4);
-            g.drawOval(posX+tam-2,posY-2,4,4);
-            g.drawOval(posX+tam-2,posY+tam-2,4,4);
+            g.drawOval(posX-10,posY-2,4,4);
+            g.drawOval(posX-10,posY+110-2,4,4);
+            g.drawOval(posX+tam+5,posY-2,4,4);
+            g.drawOval(posX+tam+5,posY+110-2,4,4);
 
         }
     }
