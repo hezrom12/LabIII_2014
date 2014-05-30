@@ -16,20 +16,20 @@ private int tam;
 
     public boolean intersecta(int x, int y) {
         if (x < posX) return false;
-        if (x > (posX + tam)) return false;
+        if (x > (posX + 150)) return false;
         if (y < posY) return false;
-        if (y > (posY + tam)) return false;
+        if (y > (posY + 50)) return false;
         return true;
 
     }
 
     public void desenha(Graphics g) {
-        g.fillOval(posX, posY, 75, 25);
+        g.fillOval(posX, posY, 150, 50);
         if (this.estaSelecionado()) {
             g.drawOval(posX-2,posY-2,4,4);
-            g.drawOval(posX-2,posY+25-2,4,4);
-            g.drawOval(posX+75-2,posY-2,4,4);
-            g.drawOval(posX+75-2,posY+25-2,4,4);
+            g.drawOval(posX-2,posY+50-2,4,4);
+            g.drawOval(posX+150-2,posY-2,4,4);
+            g.drawOval(posX+150-2,posY+50-2,4,4);
 
         }
     }
