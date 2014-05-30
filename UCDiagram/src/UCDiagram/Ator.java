@@ -18,7 +18,7 @@ public class Ator extends Figura{
         if (x < posX) return false;
         if (x > (posX + tam)) return false;
         if (y < posY) return false;
-        if (y > (posY + tam)) return false;
+        if (y > (posY + 110)) return false;
         return true;
 
     }
