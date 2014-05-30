@@ -1,19 +1,29 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package UCDiagram;
+
+import java.awt.Graphics;
 
 /**
  *
  * @author hezrom
  */
-public class Associacao {
+public class Associacao extends Figura{
 
-    Associacao(int x, int y, int tam) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private int tam;
+
+    public Associacao(int x, int y, int tam) {
+        super(x, y);
+        this.tam = tam;
     }
     
+     public boolean intersecta(int x, int y) {
+        if (x < posX) return false;
+        if (x > (posX + tam)) return false;
+        if (y < posY) return false;
+        if (y > (posY + tam)) return false;
+        return true;
+     }
+    public void desenha(Graphics g) {
+        g.drawLine(posX, posY, posY, posX);
+    }
 }

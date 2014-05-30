@@ -3,7 +3,7 @@ package UCDiagram;
 import java.awt.Graphics;
 
 /**
- *
+ * 
  * @author hezrom
  */
 public class UseCase extends Figura{
