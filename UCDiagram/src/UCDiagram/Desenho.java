@@ -80,7 +80,5 @@ public class Desenho extends JPanel{
 
     }        
 
-    void addFigura(UseCase u) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 }
