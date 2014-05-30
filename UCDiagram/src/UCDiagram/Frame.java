@@ -25,19 +25,21 @@ public class Frame extends JFrame{
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocation(200,100);
-        setSize(800,600 );
+        setSize(800,600);
+        setBackground(Color.WHITE);
         setVisible(true);
+        
         
         
     }
     
     private void iniciaComponentes() {
         //Separador de Painel
-        JPanel painel1 = new JPanel();
-        JPanel painel2 = new JPanel();
-        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,painel1,painel2);
-        getContentPane().add(splitPane);
         
+        JPanel painel1 = new JPanel();
+        //JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,painel1,painel2);
+        //getContentPane().add(splitPane);
+        //getContentPane().setLayout(new BorderLayout());
         
         //Arvore
         DefaultMutableTreeNode nodoRaiz = new DefaultMutableTreeNode("Raiz");
@@ -59,6 +61,7 @@ public class Frame extends JFrame{
         final JTree arvore = new JTree(nodoRaiz);
         painel1.add(arvore);
         getContentPane().add(arvore, BorderLayout.WEST);
+        
        
  
         
@@ -67,7 +70,8 @@ public class Frame extends JFrame{
     private void iniciaFerramentas() {
         //Menu de Ferramentas
         ButtonGroup botaoGrupo = new ButtonGroup();
-
+        JPanel painel2 = new JPanel();
+        painel2.setBackground(Color.WHITE);
         barraFerramentas = new JToolBar();
         botaoSelecionar = new JToggleButton("Select", false);        
         botaoGrupo.add(botaoSelecionar);
@@ -161,9 +165,9 @@ public class Frame extends JFrame{
 
         });
         barraFerramentas.add(botaoLimpar);
-
+        painel2.add(barraFerramentas);
         getContentPane().add(barraFerramentas, BorderLayout.NORTH);
-
+        
         desenho = new Desenho();
         desenho.addMouseListener(new TrataMouse());
         desenho.addMouseMotionListener(new TrataMouse());
