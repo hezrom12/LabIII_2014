@@ -24,7 +24,7 @@ private int tam;
     }
 
     public void desenha(Graphics g) {
-        g.fillOval(posX, posY, tam, tam);
+        g.fillOval(posX, posY, 130, 50);
         if (this.estaSelecionado()) {
             g.drawOval(posX-2,posY-2,4,4);
             g.drawOval(posX-2,posY+tam-2,4,4);
